@@ -1,24 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import React, { useState, useEffect } from "react";
+import "./App.css";
+import Axios from "axios";
+import Recipe from "./Recipe";
 function App() {
+  const APP_ID = "4b03ac4f";
+  const APP_KEY = "24847092d6fba21f22e46d0e264662f4";
+  const [query, setQuery] = useState([]);
+
+  useEffect(() => {
+    Axios.get(
+      `https://api.edamam.com/search?q=chicken&app_id=${APP_ID}&app_key=${APP_KEY}`
+    )
+      .then(res => {
+        console.log(res.data);
+        setQuery(res.data.hits);
+      })
+      .catch(e => console.log(e.message));
+  }, []);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <form className="search-form">
+        <input
+          className="search-bar"
+          type="text"
+          value={query}
+          onChange={e => setQuery(e.target.value)}
+        />
+        <button className="search-button" type="submit">
+          Search
+        </button>
+      </form>
+      {query.map}
     </div>
   );
 }
