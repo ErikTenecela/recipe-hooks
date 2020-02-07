@@ -5,7 +5,7 @@ import Recipe from "./Recipe";
 function App() {
   const APP_ID = "4b03ac4f";
   const APP_KEY = "24847092d6fba21f22e46d0e264662f4";
-  const [query, setQuery] = useState([]);
+  const [store, setStore] = useState([]);
 
   useEffect(() => {
     Axios.get(
@@ -13,24 +13,26 @@ function App() {
     )
       .then(res => {
         console.log(res.data);
-        setQuery(res.data.hits);
+        setStore(res.data.hits);
       })
       .catch(e => console.log(e.message));
   }, []);
   return (
     <div className="App">
       <form className="search-form">
-        <input
-          className="search-bar"
-          type="text"
-          value={query}
-          onChange={e => setQuery(e.target.value)}
-        />
+        <input className="search-bar" type="text" />
         <button className="search-button" type="submit">
           Search
         </button>
       </form>
-      {query.map}
+      {store.map(each => (
+        <Recipe
+          title={each.recipe.label}
+          calories={each.recipe.calories}
+          img={each.recipe.image}
+          key={each.recipe.label}
+        />
+      ))}
     </div>
   );
 }

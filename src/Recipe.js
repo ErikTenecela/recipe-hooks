@@ -1,11 +1,11 @@
 import React from "react";
 
-function Recipe(props) {
+function Recipe({ key, title, calories, img }) {
   return (
     <div>
-      <h1>Title</h1>
-      <p></p>
-      <img src="" alt="" />
+      <h1 key={key}>{title}</h1>
+      <p>{calories}</p>
+      <img src={img} alt="" />
     </div>
   );
 }
