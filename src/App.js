@@ -3,8 +3,8 @@ import "./App.css";
 import Axios from "axios";
 import Recipe from "./Recipe";
 function App() {
-  const APP_ID = "4b03ac4f";
-  const APP_KEY = "24847092d6fba21f22e46d0e264662f4";
+  const APP_ID = "4bo3ac4f";
+  const APP_KEY = "24847092d6fba21f22e46doe264662f4";
   const [store, setStore] = useState([]);
   const [query, setQuery] = useState("chicken");
   const [search, setSearch] = useState("");
